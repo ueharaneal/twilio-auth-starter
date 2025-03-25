@@ -7,6 +7,7 @@ export default function Settings() {
 		<SafeAreaView>
 			<View>
 				<Text>Settings</Text>
+				<Text>View page </Text>
 			</View>
 		</SafeAreaView>
 	)
