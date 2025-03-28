@@ -36,7 +36,7 @@ export default function TabLayout() {
 				}}
 			/>
 			<Tabs.Screen
-				name='post'
+				name='create'
 				options={{
 					title: "",
 					tabBarIcon: ({ color, focused }) => (
@@ -48,7 +48,8 @@ export default function TabLayout() {
 					),
 				}}
 				listeners={{
-					tabPress: () => {
+					tabPress: e => {
+						e.preventDefault()
 						router.push("/post")
 					},
 				}}
