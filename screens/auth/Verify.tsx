@@ -6,41 +6,40 @@ import { Input, InputField } from "@/components/ui/input"
 import { Button, ButtonText } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "expo-router"
+import { useLocalSearchParams } from "expo-router/build/hooks"
 
-export default function index() {
+export default function Verify() {
 	const router = useRouter()
-	const { user, setUser } = useAuth()
-	const [phoneNumber, setPhoneNumber] = useState("")
+	const { phoneNumber } = useLocalSearchParams()
+	const [token, setToken] = useState("")
 
-	const handleSignIn = async () => {
+	console.log("phone", phoneNumber)
+	const handleVerify = async () => {
 		console.log("hi")
 		console.log(phoneNumber)
-		setUser({
-			name: "John Doe",
+		const { data, error } = await supabase.auth.verifyOtp({
+			phone: phoneNumber as string,
+			token: token,
+			type: "sms",
 		})
-		const { data, error } = await supabase.auth.signInWithOtp({
-			phone: "+19496833881",
-		})
-		if (!error) {
-			void router.push({
-				pathname: "/(auth)/verify",
-				params: { phoneNumber: "+19496833881" },
-			})
-		}
+		// if (!error) {
+		// 	void router.push("/(auth)/username")
+		// }
 		console.log("data: ", data, error)
 	}
 	return (
 		<SafeAreaView>
+			<Text>Verify Text </Text>
 			<Input>
 				<InputField
-					placeholder='Enter Phone Number'
-					value={phoneNumber}
-					onChangeText={setPhoneNumber}
+					placeholder='Enter OTP'
+					value={token}
+					onChangeText={setToken}
 					keyboardType='phone-pad'
 				/>
 			</Input>
-			<Button onPress={handleSignIn}>
-				<ButtonText>Sign in</ButtonText>
+			<Button onPress={handleVerify}>
+				<ButtonText>Verify</ButtonText>
 			</Button>
 		</SafeAreaView>
 	)
