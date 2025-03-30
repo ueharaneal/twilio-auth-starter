@@ -6,6 +6,7 @@ import { Input, InputField } from "@/components/ui/input"
 import { Button, ButtonText } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "expo-router"
+import Layout from "./_layout"
 
 export default function index() {
 	const router = useRouter()
@@ -30,7 +31,7 @@ export default function index() {
 		console.log("data: ", data, error)
 	}
 	return (
-		<SafeAreaView>
+		<Layout onPress={handleSignIn} buttonName='Enter phone number'>
 			<Input>
 				<InputField
 					placeholder='Enter Phone Number'
@@ -39,9 +40,6 @@ export default function index() {
 					keyboardType='phone-pad'
 				/>
 			</Input>
-			<Button onPress={handleSignIn}>
-				<ButtonText>Sign in</ButtonText>
-			</Button>
-		</SafeAreaView>
+		</Layout>
 	)
 }

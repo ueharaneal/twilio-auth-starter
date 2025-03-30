@@ -1,6 +1,6 @@
 import { View, Text } from "react-native"
 import React, { useState } from "react"
-import { SafeAreaView } from "react-native-safe-area-context"
+import Layout from "./_layout"
 import { useAuth } from "@/providers/AuthProvider"
 import { Input, InputField } from "@/components/ui/input"
 import { Button, ButtonText } from "@/components/ui/button"
@@ -28,7 +28,7 @@ export default function Verify() {
 		console.log("data: ", data, error)
 	}
 	return (
-		<SafeAreaView>
+		<Layout onPress={handleVerify} buttonName='Enter OTP'>
 			<Text>Verify Text </Text>
 			<Input>
 				<InputField
@@ -38,9 +38,6 @@ export default function Verify() {
 					keyboardType='phone-pad'
 				/>
 			</Input>
-			<Button onPress={handleVerify}>
-				<ButtonText>Verify</ButtonText>
-			</Button>
-		</SafeAreaView>
+		</Layout>
 	)
 }
