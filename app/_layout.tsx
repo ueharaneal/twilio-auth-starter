@@ -27,16 +27,18 @@ export default function RootLayout() {
 	}
 
 	return (
-		<GluestackUIProvider mode='light'>
-			<Stack initialRouteName='(auth)'>
-				<Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-				<Stack.Screen
-					name='post'
-					options={{ headerShown: false, presentation: "modal" }}
-				/>
-				<Stack.Screen name='+not-found' />
-				<StatusBar style='auto' />
-			</Stack>
-		</GluestackUIProvider>
+		<AuthProvider>
+			<GluestackUIProvider mode='light'>
+				<Stack initialRouteName='(auth)'>
+					<Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+					<Stack.Screen
+						name='post'
+						options={{ headerShown: false, presentation: "modal" }}
+					/>
+					<Stack.Screen name='+not-found' />
+					<StatusBar style='auto' />
+				</Stack>
+			</GluestackUIProvider>
+		</AuthProvider>
 	)
 }
