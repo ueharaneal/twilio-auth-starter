@@ -15,10 +15,12 @@ import { Button, ButtonText } from "@/components/ui/button";
 export default ({
   children,
   buttonName,
+  label,
   onPress,
 }: {
   children: React.ReactNode;
   buttonName: string;
+  label: string;
   onPress: () => void;
 }) => {
   return (
@@ -33,6 +35,7 @@ export default ({
               flex: 1,
               justifyContent: "space-between",
               width: "100%",
+              paddingHorizontal: 8,
             }}
             className="h-full "
           >
@@ -40,9 +43,12 @@ export default ({
               <ThreadsIcon size={40} />
               <Text className="text-2xl font-bold">Twilio Auth App</Text>
             </VStack>
-            {children}
+            <VStack style={{ gap: 6 }}>
+              <Text className="font-bold">{label}</Text>
+              {children}
+            </VStack>
             <VStack>
-              <Button className="items-center" onPress={onPress}>
+              <Button className="" onPress={onPress} size="lg">
                 <ButtonText className="text-2xl font-bold">
                   {buttonName}{" "}
                 </ButtonText>
